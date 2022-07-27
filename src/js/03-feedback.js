@@ -1,8 +1,12 @@
-import { update } from "lodash";
+// import { update } from "lodash";
 import throttle from "lodash.throttle";
 
+
 const form = document.querySelector('.feedback-form');
-const formObject = { };
+
+
+const formObject = {};
+LOCALSTORAGE_KEY = "feedback-form-state";
 
 form.addEventListener('input', throttle (inputHandler, 500));
 form.addEventListener('submit', submitHandler);
@@ -11,25 +15,52 @@ updateInput();
 
 function inputHandler(e) {
     e.preventDefault();
-    const { email, message } = e.target;
-    const formData = { email: email.value, message: message.value };
-    localStorage.setItem("feedback-form-state", JSON.stringify(formData))
+
+    formObject[e.target.name] = e.target.value;
+    localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(formObject))
 }
 
 function submitHandler(e) {
     e.preventDefault();
-    const { elements: { email, message } } = e.target;
+    const { elements: { email, message } } = e.currentTarget;
     const formData = { email: email.value, message: message.value };
     console.log(formData);
-    localStorage.removeItem("feedback-form-state");
-    form.reset()
+    localStorage.removeItem(LOCALSTORAGE_KEY);
+    e.currentTarget.reset()
 }
 
-function updateInput () {
-    if (localStorage.getItem("feedback-form-state") === null) {
-        return
-    }
-    const parseInput = JSON.parse(localStorage.getItem("feedback-form-state"));
+function updateInput() {
+    const parseInput = JSON.parse(localStorage.getItem(LOCALSTORAGE_KEY));
+    if (parseInput) {
     form.elements.email.value = parseInput.email;
-    form.elements.message.value - parseInput.message;
+    form.elements.message.value = parseInput.message;
+    }
 }
+
+// function inputHandler(e) {
+//     formObject.email = e.currentTarget.email.value;
+//     formObject.message = e.currentTarget.message.value;
+//     localStorage.setItem(LOCALSTOREGE_KEY, JSON.stringify(formObject));
+// }
+
+// function submitHandler(e) {
+//     e.preventDefault();
+//     formObject.email = e.target.email.value;
+//     formObject.message = e.target.message.value;
+//     console.log(formObject);
+
+//     localStorage.removeItem(LOCALSTOREGE_KEY);
+//     form.reset();
+// }
+
+// function updateInput() {
+//     const formParse = JSON.parse(localStorage.getItem("LOCALSTORAGE_KEY"));
+//     if (formParse.email) {
+//         form.elements.email.value = formParse.email
+//     }
+//     if (formParse.message) {
+//         form.elements.message.value = formParse.message
+//     }
+
+// }
+
