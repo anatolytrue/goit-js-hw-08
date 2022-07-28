@@ -1,4 +1,3 @@
-// import { update } from "lodash";
 import throttle from "lodash.throttle";
 
 
@@ -6,7 +5,7 @@ const form = document.querySelector('.feedback-form');
 
 
 const formObject = {};
-LOCALSTORAGE_KEY = "feedback-form-state";
+const LOCALSTORAGE_KEY = "feedback-form-state";
 
 form.addEventListener('input', throttle (inputHandler, 500));
 form.addEventListener('submit', submitHandler);
@@ -30,7 +29,7 @@ function submitHandler(e) {
 }
 
 function updateInput() {
-    const parseInput = JSON.parse(localStorage.getItem(LOCALSTORAGE_KEY));
+    let parseInput = JSON.parse(localStorage.getItem(LOCALSTORAGE_KEY));
     if (parseInput) {
     form.elements.email.value = parseInput.email;
     form.elements.message.value = parseInput.message;
