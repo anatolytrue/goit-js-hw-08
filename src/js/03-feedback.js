@@ -4,7 +4,7 @@ import throttle from "lodash.throttle";
 const form = document.querySelector('.feedback-form');
 
 
-const formObject = {};
+let formObject = {};
 const LOCALSTORAGE_KEY = "feedback-form-state";
 
 form.addEventListener('input', throttle (inputHandler, 500));
@@ -21,6 +21,9 @@ function inputHandler(e) {
 
 function submitHandler(e) {
     e.preventDefault();
+    if (email.value === '' || password.value === '') {
+        return alert('Please fill in all the fields!')
+    }
     const { elements: { email, message } } = e.currentTarget;
     const formData = { email: email.value, message: message.value };
     console.log(formData);
