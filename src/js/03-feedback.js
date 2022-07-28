@@ -24,7 +24,7 @@ function submitHandler(e) {
  
     const { elements: { email, message } } = e.currentTarget;
     const formData = { email: email.value, message: message.value };
-    if (email.value === '' || password.value === '') {
+    if (email.value === '' || message.value === '') {
         return alert('Please fill in all the fields!')
     }
     console.log(formData);
