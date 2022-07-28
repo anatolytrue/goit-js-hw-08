@@ -21,11 +21,12 @@ function inputHandler(e) {
 
 function submitHandler(e) {
     e.preventDefault();
+ 
+    const { elements: { email, message } } = e.currentTarget;
+    const formData = { email: email.value, message: message.value };
     if (email.value === '' || password.value === '') {
         return alert('Please fill in all the fields!')
     }
-    const { elements: { email, message } } = e.currentTarget;
-    const formData = { email: email.value, message: message.value };
     console.log(formData);
     localStorage.removeItem(LOCALSTORAGE_KEY);
     e.currentTarget.reset()
