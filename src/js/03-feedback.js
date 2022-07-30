@@ -14,7 +14,7 @@ updateInput();
 
 function inputHandler(e) {
     e.preventDefault();
-
+  
     formObject[e.target.name] = e.target.value;
     localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(formObject))
 }
@@ -37,8 +37,7 @@ function updateInput() {
     if (parseInput) {
     form.elements.email.value = parseInput.email;
     form.elements.message.value = parseInput.message;
-    }
-}
+    } 
 
 // function inputHandler(e) {
 //     formObject.email = e.currentTarget.email.value;
