@@ -67,7 +67,7 @@ function submitHandler(e) {
     e.preventDefault();
     const { elements: { email, message } } = e.currentTarget;
     const formData = { email: email.value, message: message.value };
-    if (email.value === null|| message.value === null) {
+    if (email.value === ''|| message.value === '') {
         return alert('Please fill in all the fields!')
     }
     console.log(formData);
