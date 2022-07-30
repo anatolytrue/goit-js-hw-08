@@ -14,7 +14,7 @@ updateInput();
 
 function inputHandler(e) {
     e.preventDefault();
-  
+
     formObject[e.target.name] = e.target.value;
     localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(formObject))
 }
@@ -22,10 +22,11 @@ function inputHandler(e) {
 function submitHandler(e) {
     e.preventDefault();
  
-    const { elements: { email, message } } = e.currentTarget;
-    const formData = { email: email.value, message: message.value };
-    if (email.value === '' || message.value === '') {
-        return alert('Please fill in all the fields!')
+    // const { elements: { email, message } } = e.currentTarget;
+    // const formData = { email: email.value, message: message.value };
+    formObject[e.target.name] = e.target.value;
+    if (e.target.value === '') {
+        return alert('Please fill in all the fields WTF!')
     }
     console.log(formData);
     localStorage.removeItem(LOCALSTORAGE_KEY);
@@ -34,11 +35,13 @@ function submitHandler(e) {
 
 function updateInput() {
     let parseInput = JSON.parse(localStorage.getItem(LOCALSTORAGE_KEY));
-    if (parseInput) {
-    form.elements.email.value = parseInput.email;
-    form.elements.message.value = parseInput.message;
-    } 
-
+    if (parseInput.value === null) {
+        form.elements.email.value = formObject;
+    } else {
+        form.elements.email.value = parseInput.email;
+        form.elements.message.value = parseInput.message;
+    }
+}
 // function inputHandler(e) {
 //     formObject.email = e.currentTarget.email.value;
 //     formObject.message = e.currentTarget.message.value;
