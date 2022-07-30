@@ -81,10 +81,10 @@ function updateInput() {
         form.elements.email.value = parseFormInput.email || '';
         form.elements.message.value = parseFormInput.message || '';
     }
+}
     // let parseInput = JSON.parse(localStorage.getItem(LOCALSTORAGE_KEY));
     // console.log(parseInput)
     // if (parseInput) {
     //     form.elements.email.value = parseInput.email || '';
     //     form.elements.message.value = parseInput.message || '';
     // }
-}
