@@ -77,7 +77,7 @@ function submitHandler(e) {
 function updateInput() {
     const formInput = localStorage.getItem(LOCALSTORAGE_KEY);
     const parseFormInput = JSON.parse(formInput);
-        if (parseFormInput) {
+    if (parseFormInput) {
         form.elements.email.value = parseFormInput.email || '';
         form.elements.message.value = parseFormInput.message || '';
     }
@@ -87,3 +87,4 @@ function updateInput() {
     //     form.elements.email.value = parseInput.email || '';
     //     form.elements.message.value = parseInput.message || '';
     // }
+}
