@@ -28,7 +28,7 @@ function submitHandler(e) {
     if (e.target.value === '') {
         return alert('Please fill in all the fields WTF!')
     }
-    console.log(formData);
+    console.log(formObject);
     localStorage.removeItem(LOCALSTORAGE_KEY);
     e.currentTarget.reset()
 }
